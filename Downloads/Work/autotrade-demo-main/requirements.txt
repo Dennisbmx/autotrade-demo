@@ -9,3 +9,4 @@ python-dotenv
 python-dotenv
 yfinance
 alpaca-trade-api
+websockets>=11
