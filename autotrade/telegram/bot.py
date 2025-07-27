@@ -1,20 +1,34 @@
+import os
+import telebot
 
-import os, telebot
+TOKEN = os.getenv('TELEGRAM_BOT_TOKEN', '')
+CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', '')
+ENABLE = os.getenv('ENABLE_TELEGRAM', 'true').lower() == 'true'
 
-TOKEN = os.getenv('TELEGRAM_BOT_TOKEN','')
-CHAT_ID = os.getenv('TELEGRAM_CHAT_ID','')
+bot = telebot.TeleBot(TOKEN) if TOKEN and ENABLE else None
 
-bot = telebot.TeleBot(TOKEN) if ':' in TOKEN else None
 
 def run_bot():
     if not bot:
         print('Telegram disabled.')
         return
+
     @bot.message_handler(commands=['ping'])
-    def _ping(m):
-        bot.reply_to(m,'pong')
-    bot.send_message(CHAT_ID or m.chat.id,'Bot started')
+    def _ping(message):
+        bot.reply_to(message, 'pong')
+
+    if CHAT_ID:
+        bot.send_message(CHAT_ID, 'Bot started')
+    else:
+        print('CHAT_ID not set; bot running without alerts.')
+
     bot.infinity_polling()
 
-if __name__=='__main__':
+
+def send_alert(text: str):
+    if bot and CHAT_ID:
+        bot.send_message(CHAT_ID, text)
+
+
+if __name__ == '__main__':
     run_bot()

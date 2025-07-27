@@ -1,15 +1,21 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="">
 <head>
   <meta charset="utf-8">
   <title>{{ title }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/static/app.css">
   <script src="/static/app.js" defer></script>
 </head>
-<body>
-  <nav class="nav"> <a href="/">Home</a> | <a href="/dashboard">Dashboard</a> </nav>
-  <main>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+  <nav class="p-4 bg-blue-600 text-white flex justify-between">
+    <div>
+      <a href="/dashboard" class="mr-4">Dashboard</a>
+      <a href="/portfolio" class="mr-4">Portfolio</a>
+    </div>
+    <button id="theme-toggle">🌙</button>
+  </nav>
+  <main class="p-4">
   {% block content %}{% endblock %}
   </main>
 </body>
