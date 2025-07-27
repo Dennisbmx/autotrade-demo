@@ -1,0 +1,13 @@
+
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Dashboard</h1>
+<div id="price-box" class="card"></div>
+<script>
+fetch('/prices?syms=NVDA,AAPL,MSFT,TSLA')
+  .then(r=>r.json())
+  .then(d=>{
+     document.getElementById('price-box').textContent = JSON.stringify(d);
+  });
+</script>
+{% endblock %}

@@ -1,1 +1,1 @@
-// placeholder
+console.log('AutoTrade JS loaded');
