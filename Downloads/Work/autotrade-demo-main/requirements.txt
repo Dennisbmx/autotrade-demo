@@ -4,9 +4,9 @@ jinja2
 pyTelegramBotAPI
 alpaca-trade-api
 openai
-yfinance
+yfinance==0.2.36
 python-dotenv
 python-dotenv
-yfinance
+yfinance==0.2.36
 alpaca-trade-api
 websockets>=11
