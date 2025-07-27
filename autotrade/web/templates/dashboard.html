@@ -1,13 +1,16 @@
-
 {% extends 'layout.html' %}
 {% block content %}
-<h1>Dashboard</h1>
-<div id="price-box" class="card"></div>
-<script>
-fetch('/prices?syms=NVDA,AAPL,MSFT,TSLA')
-  .then(r=>r.json())
-  .then(d=>{
-     document.getElementById('price-box').textContent = JSON.stringify(d);
-  });
-</script>
+<h1 class="text-2xl font-bold mb-4">Dashboard</h1>
+<div class="mb-4">
+  <label for="capital" class="mr-2">Capital: $<span id="capital-value">1000</span></label>
+  <input id="capital" type="range" min="100" max="10000" step="100" value="1000" class="w-full" />
+</div>
+<div class="mb-4">
+  <h2 class="font-semibold">Prices</h2>
+  <pre id="price-box" class="bg-gray-100 p-2 rounded"></pre>
+</div>
+<div class="mb-4">
+  <h2 class="font-semibold">Market Brief</h2>
+  <pre id="brief-box" class="bg-gray-100 p-2 rounded"></pre>
+</div>
 {% endblock %}
