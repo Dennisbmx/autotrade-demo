@@ -17,7 +17,8 @@ import openai
 app = FastAPI(title='AutoTrade 0.6.3 Demo')
 
 BASE = Path(__file__).resolve().parent.parent
-load_dotenv(BASE / '.env')
+ROOT = BASE.parent
+load_dotenv(ROOT / '.env')
 TEMPLATES = Jinja2Templates(directory=str(BASE / 'web' / 'templates'))
 app.mount('/static', StaticFiles(directory=str(BASE / 'web' / 'static')), name='static')
 
@@ -108,3 +109,8 @@ async def root():
 @app.get('/dashboard', response_class=HTMLResponse)
 async def dashboard(request: Request):
     return TEMPLATES.TemplateResponse('dashboard.html', {'request': request, 'title': 'Dashboard'})
+
+
+@app.get('/portfolio', response_class=HTMLResponse)
+async def portfolio(request: Request):
+    return TEMPLATES.TemplateResponse('portfolio.html', {'request': request, 'title': 'Portfolio'})
