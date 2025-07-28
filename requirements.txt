@@ -1,3 +1,14 @@
+q7q20a-codex/set-up-demo-auto-trade-application
+fastapi==0.116.1
+uvicorn[standard]==0.35.0
+python-dotenv==1.1.1
+pydantic==2.6.4
+pydantic_core==2.16.3
+pyTelegramBotAPI==4.15.4
+alpaca-trade-api==3.0.0
+yfinance==0.2.36
+openai==1.30.2
+=======
 fastapi==0.109.2
 uvicorn==0.35.0
 jinja2
@@ -10,3 +21,4 @@ openai
 main
 yfinance
 python-dotenv
+main
