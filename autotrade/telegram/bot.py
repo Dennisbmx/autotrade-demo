@@ -1,20 +1,54 @@
+import os
+import threading
+import time
 
-import os, telebot
+import telebot
 
-TOKEN = os.getenv('TELEGRAM_BOT_TOKEN','')
-CHAT_ID = os.getenv('TELEGRAM_CHAT_ID','')
+from autotrade.api.state import STATE
 
-bot = telebot.TeleBot(TOKEN) if ':' in TOKEN else None
+TOKEN = os.getenv('TELEGRAM_BOT_TOKEN', '')
+CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', '')
+
+bot = telebot.TeleBot(TOKEN) if TOKEN else None
+_paused = False
+
 
 def run_bot():
     if not bot:
         print('Telegram disabled.')
         return
+
+    @bot.message_handler(commands=['start'])
+    def start(msg):
+        bot.reply_to(msg, 'AutoTrade 0.6.4 online')
+
     @bot.message_handler(commands=['ping'])
-    def _ping(m):
-        bot.reply_to(m,'pong')
-    bot.send_message(CHAT_ID or m.chat.id,'Bot started')
+    def ping(msg):
+        bot.reply_to(msg, 'pong')
+
+    @bot.message_handler(commands=['pause'])
+    def pause(msg):
+        global _paused
+        _paused = True
+        bot.reply_to(msg, 'paused')
+
+    @bot.message_handler(commands=['resume'])
+    def resume(msg):
+        global _paused
+        _paused = False
+        bot.reply_to(msg, 'resumed')
+
+    @bot.message_handler(commands=['status'])
+    def status(msg):
+        text = f"Summary: {STATE['summary']}\nPositions: {STATE['positions']}"
+        bot.reply_to(msg, text)
+
+    if CHAT_ID:
+        bot.send_message(CHAT_ID, 'Bot started')
+
     bot.infinity_polling()
 
-if __name__=='__main__':
-    run_bot()
+
+def send_alert(text: str):
+    if bot and CHAT_ID:
+        bot.send_message(CHAT_ID, text)
