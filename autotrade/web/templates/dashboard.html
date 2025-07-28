@@ -1,3 +1,4 @@
+q7q20a-codex/set-up-demo-auto-trade-application
 {% extends "base.html" %}
 {% block title %}Dashboard{% endblock %}
 {% block content %}
@@ -62,5 +63,82 @@
       </div>
     </div>
   </aside>
+=======
+bd5l08-codex/set-up-demo-auto-trade-application
+{% extends "layout.html" %}
+{% block content %}
+<div class="grid lg:grid-cols-4 gap-4 mb-6">
+  <div id="open-trades" class="card">…</div>
+  <div id="capital" class="card">…</div>
+  <div id="pl-today" class="card">…</div>
+  <div id="gpt-status" class="card">…</div>
+</div>
+
+<div class="grid lg:grid-cols-3 gap-6">
+  <section class="card lg:col-span-1 space-y-4">
+    <h2 class="title">Quick Controls</h2>
+    <label class="block text-sm font-medium">Capital ($0 – 5 000)</label>
+    <input id="capRange" type="range" min="0" max="5000" value="1000"
+           class="w-full accent-emerald-500">
+    <output id="capOut" class="text-right block font-semibold">1000 $</output>
+    <div class="flex gap-2">
+      <button data-risk="low" class="pill">Low</button>
+      <button data-risk="medium" class="pill active">Medium</button>
+      <button data-risk="high" class="pill">High</button>
+    </div>
+    <label class="block text-sm font-medium mt-2">Leverage</label>
+    <select id="levSel" class="select">
+      <option value="1">1× (No)</option>
+      <option value="2">2×</option>
+      <option value="5">5×</option>
+    </select>
+    <label class="block text-sm font-medium mt-2 mb-1">Indicators</label>
+    <div id="indicators" class="flex flex-wrap gap-2">
+      <button class="pill">RSI</button>
+      <button class="pill">MACD</button>
+      <button class="pill">BBands</button>
+      <button class="pill">EMA</button>
+    </div>
+    <button id="analyzeBtn" class="w-full btn-primary mt-4">Analyze</button>
+  </section>
+  <section class="card lg:col-span-2">
+    <h2 class="title mb-4">Active Positions</h2>
+    <div class="overflow-x-auto">
+      <table id="posTable" class="table-auto w-full text-sm">
+        <thead><tr class="bg-slate-800 text-slate-100">
+          <th>Symbol</th><th>Qty</th><th>Avg Price</th>
+          <th>Value</th><th>P/L</th><th>%</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+<div class="grid lg:grid-cols-2 gap-6">
+  <section class="card">
+    <h2 class="title mb-2">Trade Log</h2>
+    <pre id="tradeLog" class="h-56 overflow-y-auto"></pre>
+  </section>
+  <section class="card">
+    <h2 class="title mb-2">AI Market Brief</h2>
+    <pre id="aiBrief" class="h-56 overflow-y-auto"></pre>
+  </section>
+
+{% extends 'layout.html' %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">Dashboard</h1>
+<div class="mb-4">
+  <label for="capital" class="mr-2">Capital: $<span id="capital-value">1000</span></label>
+  <input id="capital" type="range" min="100" max="10000" step="100" value="1000" class="w-full" />
+</div>
+<div class="mb-4">
+  <h2 class="font-semibold">Prices</h2>
+  <pre id="price-box" class="bg-gray-100 p-2 rounded"></pre>
+</div>
+<div class="mb-4">
+  <h2 class="font-semibold">Market Brief</h2>
+  <pre id="brief-box" class="bg-gray-100 p-2 rounded"></pre>
+main
+main
 </div>
 {% endblock %}
