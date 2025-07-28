@@ -3,6 +3,10 @@ uvicorn==0.35.0
 jinja2
 pyTelegramBotAPI
 alpaca-trade-api
+bd5l08-codex/set-up-demo-auto-trade-application
+openai<1
+
 openai
+main
 yfinance
 python-dotenv
