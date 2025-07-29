@@ -1,4 +1,3 @@
-q7q20a-codex/set-up-demo-auto-trade-application
 const $ = s => document.querySelector(s);
 const $$ = s => document.querySelectorAll(s);
 
@@ -89,8 +88,6 @@ async function loadSummary(){
   if(d.summary) $('#aiBrief').textContent = d.summary;
 }
 loadSummary();
-=======
-bd5l08-codex/set-up-demo-auto-trade-application
 const $ = sel => document.querySelector(sel);
 const $$ = sel => document.querySelectorAll(sel);
 const api = p => fetch(p).then(r => r.json());
@@ -153,5 +150,3 @@ document.addEventListener('DOMContentLoaded', () => {
   loadPrices();
   loadBrief();
 });
-main
-main
