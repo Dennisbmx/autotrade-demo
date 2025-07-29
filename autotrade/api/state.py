@@ -5,3 +5,9 @@ STATE = {
     "summary": "No analysis yet.",
     "summary_ts": 0,
 }
+
+
+    "summary": "No analysis yet.",
+    "summary_ts": 0,
+
+    "summary": "No analysis yet."
