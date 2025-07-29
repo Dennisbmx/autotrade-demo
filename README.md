@@ -1,4 +1,13 @@
 # AutoTrade Demo
+
+Simple trading dashboard with FastAPI backend and optional Telegram bot.
+
+## Setup
+1. `cp .env.sample .env` and fill in your keys.
+2. Run `./scripts/dev.sh`
+
+Open <http://localhost:8000> after startup.
+
 This project showcases a tiny automated trading dashboard with a FastAPI backend and optional Telegram bot. Prices come from Alpaca when API keys are provided, otherwise yfinance is used.
 
 ## Setup
@@ -30,7 +39,6 @@ source .venv/bin/activate
 python -m autotrade.run_all
 ```
 
-q7q20a-codex/set-up-demo-auto-trade-application
 Preview port 8000 in your browser to see the dashboard.
 
 Open your browser to port 8000 to view the dashboard.

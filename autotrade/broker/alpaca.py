@@ -11,6 +11,12 @@ ALPACA_KEY = os.getenv("ALPACA_API_KEY", "")
 ALPACA_SECRET = os.getenv("ALPACA_API_SECRET", "")
 BASE_URL = "https://paper-api.alpaca.markets"
 
+_client = (
+    REST(ALPACA_KEY, ALPACA_SECRET, base_url=BASE_URL)
+    if ALPACA_KEY and ALPACA_SECRET
+    else None
+)
+
 _client = REST(ALPACA_KEY, ALPACA_SECRET, base_url=BASE_URL) if ALPACA_KEY and ALPACA_SECRET else None
 
 
@@ -20,11 +26,24 @@ def use_real() -> bool:
 
 def open_trade(symbol: str, qty: int):
     if use_real():
+        _client.submit_order(
+            symbol=symbol,
+            qty=qty,
+            side="buy",
+            type="market",
+            time_in_force="gtc",
+        )
+
         _client.submit_order(symbol=symbol, qty=qty, side="buy", type="market", time_in_force="gtc")
+
     else:
         STATE["log"].append(f"MOCK BUY {qty} {symbol}")
     pos = STATE["positions"].setdefault(symbol, {"qty": 0, "avg": 0})
     pos["qty"] += qty
+
+
+def close_trade(symbol: str):
+    if symbol in STATE["positions"]:
 
 from autotrade.api.state import STATE
 
@@ -66,6 +85,8 @@ def get_prices(symbols: List[str]) -> Dict[str, float]:
                 prices[s] = round(random.uniform(10, 1000), 2)
     return prices
 
+
         STATE["log"].append(f"MOCK SELL ALL {symbol}")
         STATE["positions"].pop(symbol)
     # real Alpaca REST call would go here
+

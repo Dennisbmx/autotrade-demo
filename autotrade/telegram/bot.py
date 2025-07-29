@@ -1,4 +1,13 @@
 import os
+import telebot
+
+from autotrade.api.state import STATE
+
+TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
+CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
+
+bot = telebot.TeleBot(TOKEN) if TOKEN else None
+_paused = False
 import threading
 import time
 import telebot
@@ -23,7 +32,6 @@ CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', '')
 ENABLE = os.getenv('ENABLE_TELEGRAM', 'true').lower() == 'true'
 
 bot = telebot.TeleBot(TOKEN) if TOKEN and ENABLE else None
-
 
 
 def run_bot():
@@ -53,6 +61,7 @@ def run_bot():
 
     @bot.message_handler(commands=["status"])
 
+
     @bot.message_handler(commands=['start'])
     def start(msg):
         bot.reply_to(msg, 'AutoTrade 0.6.4 online')
@@ -80,6 +89,7 @@ def run_bot():
 
     if CHAT_ID:
         bot.send_message(CHAT_ID, "Bot started")
+
 
         bot.send_message(CHAT_ID, 'Bot started')
 

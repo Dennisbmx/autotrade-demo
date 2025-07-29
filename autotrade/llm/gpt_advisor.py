@@ -3,6 +3,8 @@ from openai import OpenAI
 
 _client = OpenAI(api_key=os.getenv("OPENAI_API_KEY", ""))
 
+
+
 def ask_gpt(prompt: str) -> str:
     try:
         rsp = _client.chat.completions.create(
@@ -14,6 +16,7 @@ def ask_gpt(prompt: str) -> str:
     except Exception as exc:
         print("GPT error", exc)
         return ""
+
 
 import openai
 

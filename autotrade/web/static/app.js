@@ -88,6 +88,7 @@ async function loadSummary(){
   if(d.summary) $('#aiBrief').textContent = d.summary;
 }
 loadSummary();
+
 const $ = sel => document.querySelector(sel);
 const $$ = sel => document.querySelectorAll(sel);
 const api = p => fetch(p).then(r => r.json());
