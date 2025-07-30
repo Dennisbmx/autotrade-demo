@@ -18,6 +18,7 @@ def ask_gpt(prompt: str) -> str:
         return ""
 
 
+
 import openai
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -30,4 +31,5 @@ def ask_gpt(prompt: str) -> str:
         temperature=0.4,
     )
     return rsp.choices[0].message["content"].strip()
+
 
